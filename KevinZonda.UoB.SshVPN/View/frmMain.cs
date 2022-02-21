@@ -1,3 +1,5 @@
+using KevinZonda.UoB.SshVPN.Controller;
+
 namespace KevinZonda.UoB.SshVPN.View
 {
     public partial class frmMain : Form
@@ -9,13 +11,17 @@ namespace KevinZonda.UoB.SshVPN.View
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            Controller.SshController.Start(txtUsername.Text, txtPassword.Text);
+            BaseController.StartLocally(txtUsername.Text, txtPassword.Text);
         }
 
         private void btnConnectGlobal_Click(object sender, EventArgs e)
         {
-            Controller.SshController.Start(txtUsername.Text, txtPassword.Text);
+            BaseController.StartGlobally(txtUsername.Text, txtPassword.Text);
+        }
 
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            BaseController.Stop();
         }
     }
 }

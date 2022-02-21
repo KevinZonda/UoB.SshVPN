@@ -30,9 +30,6 @@ namespace KevinZonda.UoB.SshVPN.Controller
             StartLocally(username, password);
             Socks2Http.Start();
             WinProxyConfig.Set("127.0.0.1", 1902);
-
         }
-
-
     }
 }
