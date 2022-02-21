@@ -1,16 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace KevinZonda.UoB.SshVPN.Controller
 {
     internal class Socks2Http
     {
-        public static void Start()
-        {
+        const string PrivoxyExe = "bin\\privoxy.exe";
+        const string PrivoxyConf = "bin\\conf";
 
+        public static Process Start()
+        {
+            var p = new Process
+            {
+                StartInfo =
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $"/c START /MIN {PrivoxyExe} {PrivoxyConf}",
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                }
+            };
+            p.Start();
+            return p;
         }
     }
 }
