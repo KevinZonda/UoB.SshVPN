@@ -56,12 +56,13 @@
             this.tblCredential.Controls.Add(this.lblUsername, 0, 0);
             this.tblCredential.Controls.Add(this.lblPassword, 0, 1);
             this.tblCredential.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblCredential.Location = new System.Drawing.Point(3, 120);
+            this.tblCredential.Location = new System.Drawing.Point(20, 120);
+            this.tblCredential.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.tblCredential.Name = "tblCredential";
             this.tblCredential.RowCount = 2;
             this.tblCredential.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblCredential.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblCredential.Size = new System.Drawing.Size(806, 346);
+            this.tblCredential.Size = new System.Drawing.Size(772, 346);
             this.tblCredential.TabIndex = 5;
             // 
             // txtPassword
@@ -69,7 +70,9 @@
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPassword.Location = new System.Drawing.Point(115, 242);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(688, 35);
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.PlaceholderText = "Enter your password...";
+            this.txtPassword.Size = new System.Drawing.Size(654, 35);
             this.txtPassword.TabIndex = 3;
             // 
             // txtUsername
@@ -77,7 +80,8 @@
             this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsername.Location = new System.Drawing.Point(115, 69);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(688, 35);
+            this.txtUsername.PlaceholderText = "Enter 6-digit student code...";
+            this.txtUsername.Size = new System.Drawing.Size(654, 35);
             this.txtUsername.TabIndex = 2;
             // 
             // lblUsername
@@ -123,20 +127,21 @@
             this.tblButtons.Controls.Add(this.btnConnectGlobal, 0, 0);
             this.tblButtons.Controls.Add(this.btnStop, 2, 0);
             this.tblButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblButtons.Location = new System.Drawing.Point(3, 472);
+            this.tblButtons.Location = new System.Drawing.Point(20, 472);
+            this.tblButtons.Margin = new System.Windows.Forms.Padding(20, 3, 20, 20);
             this.tblButtons.Name = "tblButtons";
             this.tblButtons.RowCount = 1;
             this.tblButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblButtons.Size = new System.Drawing.Size(806, 112);
+            this.tblButtons.Size = new System.Drawing.Size(772, 95);
             this.tblButtons.TabIndex = 7;
             // 
             // btnConnect
             // 
             this.btnConnect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnConnect.Location = new System.Drawing.Point(271, 3);
+            this.btnConnect.Location = new System.Drawing.Point(260, 3);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(262, 106);
+            this.btnConnect.Size = new System.Drawing.Size(251, 89);
             this.btnConnect.TabIndex = 0;
             this.btnConnect.Text = "Connect (Socks5)";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -147,7 +152,7 @@
             this.btnConnectGlobal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnConnectGlobal.Location = new System.Drawing.Point(3, 3);
             this.btnConnectGlobal.Name = "btnConnectGlobal";
-            this.btnConnectGlobal.Size = new System.Drawing.Size(262, 106);
+            this.btnConnectGlobal.Size = new System.Drawing.Size(251, 89);
             this.btnConnectGlobal.TabIndex = 1;
             this.btnConnectGlobal.Text = "Connect (Globally)";
             this.btnConnectGlobal.UseVisualStyleBackColor = true;
@@ -156,9 +161,9 @@
             // btnStop
             // 
             this.btnStop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnStop.Location = new System.Drawing.Point(539, 3);
+            this.btnStop.Location = new System.Drawing.Point(517, 3);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(264, 106);
+            this.btnStop.Size = new System.Drawing.Size(252, 89);
             this.btnStop.TabIndex = 2;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -166,6 +171,7 @@
             // 
             // tblMain
             // 
+            this.tblMain.BackColor = System.Drawing.SystemColors.Window;
             this.tblMain.ColumnCount = 1;
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMain.Controls.Add(this.tblCredential, 0, 1);
