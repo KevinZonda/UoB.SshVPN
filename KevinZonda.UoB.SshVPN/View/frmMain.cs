@@ -10,6 +10,7 @@ namespace KevinZonda.UoB.SshVPN.View
             EventController.Self.OnSshExit += (x) =>
             {
                 Colour(Color.Red);
+                Socks2Http.Stop();
             };
         }
 
