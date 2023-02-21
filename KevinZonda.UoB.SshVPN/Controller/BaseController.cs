@@ -1,35 +1,34 @@
 ﻿using System.Diagnostics;
 
-namespace KevinZonda.UoB.SshVPN.Controller
+namespace KevinZonda.UoB.SshVPN.Controller;
+
+internal class BaseController
 {
-    internal class BaseController
+    public static void Stop()
     {
-        public static void Stop()
+        WinProxyConfig.Unset();
+        Process[] procs = Process.GetProcesses();
+        foreach (Process item in procs)
         {
-            WinProxyConfig.Unset();
-            Process[] procs = Process.GetProcesses();
-            foreach (Process item in procs)
+            if (item.ProcessName.ToLower() == ConstText.PLINK ||
+                item.ProcessName.ToLower() == ConstText.PRIVOXY
+                )
             {
-                if (item.ProcessName.ToLower() == "uoblink" ||
-                    item.ProcessName.ToLower() == "privoxy"
-                    )
-                {
-                    item.Kill();
-                }
+                item.Kill();
             }
         }
+    }
 
-        public static void StartLocally(string username, string password)
-        {
-            Stop();
-            SshController.Start(username, password);
-        }
+    public static void StartLocally(string username, string password)
+    {
+        Stop();
+        SshController.Start(username, password);
+    }
 
-        public static void StartGlobally(string username, string password)
-        {
-            StartLocally(username, password);
-            Socks2Http.Start();
-            WinProxyConfig.Set("127.0.0.1", 1902);
-        }
+    public static void StartGlobally(string username, string password)
+    {
+        StartLocally(username, password);
+        Socks2Http.Start();
+        WinProxyConfig.Set("127.0.0.1", ConstText.HTTP_LISTEN);
     }
 }

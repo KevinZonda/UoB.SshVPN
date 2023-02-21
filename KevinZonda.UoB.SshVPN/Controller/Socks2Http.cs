@@ -1,26 +1,23 @@
 ﻿using System.Diagnostics;
 
-namespace KevinZonda.UoB.SshVPN.Controller
-{
-    internal class Socks2Http
-    {
-        const string PrivoxyExe = "bin\\privoxy.exe";
-        const string PrivoxyConf = "bin\\conf";
+namespace KevinZonda.UoB.SshVPN.Controller;
 
-        public static Process Start()
+internal class Socks2Http
+{
+    public static Process Start()
+    {
+        var p = new Process
         {
-            var p = new Process
+            StartInfo =
             {
-                StartInfo =
-                {
-                    FileName = "cmd.exe",
-                    Arguments = $"/c START /MIN {PrivoxyExe} {PrivoxyConf}",
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
-            p.Start();
-            return p;
-        }
+                FileName = "cmd.exe",
+                Arguments = $"/c START /MIN {ConstText.PRIVOXY_BIN} {ConstText.PRIVOXY_CONF}",
+                UseShellExecute = false,
+                CreateNoWindow = true
+            }
+        };
+        p.Start();
+        
+        return p;
     }
 }

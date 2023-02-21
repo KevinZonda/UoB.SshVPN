@@ -17,7 +17,7 @@ namespace KevinZonda.UoB.SshVPN.Controller
             => SetProxy(strProxy, null);
 
 
-        private static bool SetProxy(string strProxy, string exceptions)
+        private static bool SetProxy(string? strProxy, string? exceptions)
         {
             InternetPerConnOptionList list = new InternetPerConnOptionList();
 

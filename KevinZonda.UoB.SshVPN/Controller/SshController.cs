@@ -1,27 +1,25 @@
 ﻿using System.Diagnostics;
 
-namespace KevinZonda.UoB.SshVPN.Controller
+namespace KevinZonda.UoB.SshVPN.Controller;
+
+internal class SshController
 {
-    internal class SshController
+    private const string ADDRESS = "tw.cs.bham.ac.uk";
+
+    public static Process Start(string username, string password)
     {
-        private const string ADDRESS = "tw.cs.bham.ac.uk";
-        private const string PLINK = "bin\\uoblink.exe";
 
-        public static Process Start(string username, string password)
+        var p = new Process
         {
-
-            var p = new Process
+            StartInfo =
             {
-                StartInfo =
-                {
-                    FileName = "cmd.exe",
-                    Arguments = $"/c echo \"n\" | {PLINK} {username}@{ADDRESS} -pw \"{password}\" -D 127.0.0.1:1902 -N",
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                }
-            };
-            p.Start();
-            return p;
-        }
+                FileName = "cmd.exe",
+                Arguments = $"/c echo \"n\" | {ConstText.PLINK_BIN} {username}@{ADDRESS} -pw \"{password}\" -D 127.0.0.1:{ConstText.SOCKS_LISTEN} -N",
+                UseShellExecute = false,
+                CreateNoWindow = true
+            }
+        };
+        p.Start();
+        return p;
     }
 }
