@@ -1,14 +1,22 @@
 ﻿using System.Diagnostics;
+using System.Net;
 
 namespace KevinZonda.UoB.SshVPN.Controller;
 
 internal class Socks2Http
 {
-    public static Process Start()
+    private static Process? _p = null;
+
+    public static void Start()
     {
-        var p = new Process
+        if (_p is not null)
         {
-            StartInfo =
+            _p.Kill();
+            _p.Dispose();
+        }
+        _p = new()
+        {
+            StartInfo = new()
             {
                 FileName = "cmd.exe",
                 Arguments = $"/c START /MIN {ConstText.PRIVOXY_BIN} {ConstText.PRIVOXY_CONF}",
@@ -16,8 +24,6 @@ internal class Socks2Http
                 CreateNoWindow = true
             }
         };
-        p.Start();
-        
-        return p;
+        _p.Start();
     }
 }

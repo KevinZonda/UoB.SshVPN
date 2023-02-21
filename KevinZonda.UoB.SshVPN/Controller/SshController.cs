@@ -2,16 +2,21 @@
 
 namespace KevinZonda.UoB.SshVPN.Controller;
 
-internal class SshController
+internal static class SshController
 {
     private const string ADDRESS = "tw.cs.bham.ac.uk";
+    private static Process? _p = null;
 
-    public static Process Start(string username, string password)
+    public static void Start(string username, string password)
     {
-
-        var p = new Process
+        if (_p is not null)
         {
-            StartInfo =
+            _p.Kill();
+            _p.Dispose();
+        }
+        _p = new()
+        {
+            StartInfo = new()
             {
                 FileName = "cmd.exe",
                 Arguments = $"/c echo \"n\" | {ConstText.PLINK_BIN} {username}@{ADDRESS} -pw \"{password}\" -D 127.0.0.1:{ConstText.SOCKS_LISTEN} -N",
@@ -19,7 +24,12 @@ internal class SshController
                 CreateNoWindow = true
             }
         };
-        p.Start();
-        return p;
+        _p.Start();
+
+        Task.Run(() =>
+        {
+            while (_p != null && !_p.HasExited) ;
+            EventController.Self.EmitSshExit(_p == null ? 0 : _p.ExitCode);
+        });
     }
 }

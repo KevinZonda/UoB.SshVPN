@@ -7,6 +7,7 @@ namespace KevinZonda.UoB.SshVPN.View
         public frmMain()
         {
             InitializeComponent();
+            ViewController.MainView = this;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
