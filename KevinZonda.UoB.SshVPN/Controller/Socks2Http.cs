@@ -25,10 +25,14 @@ internal class Socks2Http
 
     public static void Stop()
     {
-        if (_p is not null)
+        try
         {
-            _p.Kill();
-            _p.Dispose();
+            if (_p is not null)
+            {
+                _p.Kill();
+                _p.Dispose();
+            }
         }
+        catch { }
     }
 }

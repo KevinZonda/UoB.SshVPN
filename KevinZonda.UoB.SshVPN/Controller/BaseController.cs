@@ -7,8 +7,14 @@ internal class BaseController
     public static void Stop()
     {
         WinProxyConfig.Unset();
-        Socks2Http.Stop();
-        SshController.Stop();
+        Process[] procs = Process.GetProcesses();
+        foreach (Process item in procs)
+        {
+            if (item.ProcessName.ToLower() == ConstText.PLINK ||
+                item.ProcessName.ToLower() == ConstText.PRIVOXY
+                )
+                item.Kill();
+        }
     }
 
     public static void StartLocally(string username, string password)
