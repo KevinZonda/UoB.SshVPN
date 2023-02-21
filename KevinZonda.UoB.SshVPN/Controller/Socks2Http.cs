@@ -9,11 +9,7 @@ internal class Socks2Http
 
     public static void Start()
     {
-        if (_p is not null)
-        {
-            _p.Kill();
-            _p.Dispose();
-        }
+        Stop();
         _p = new()
         {
             StartInfo = new()
@@ -25,5 +21,14 @@ internal class Socks2Http
             }
         };
         _p.Start();
+    }
+
+    public static void Stop()
+    {
+        if (_p is not null)
+        {
+            _p.Kill();
+            _p.Dispose();
+        }
     }
 }

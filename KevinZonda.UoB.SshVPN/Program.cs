@@ -1,3 +1,5 @@
+using KevinZonda.UoB.SshVPN.Controller;
+
 namespace KevinZonda.UoB.SshVPN
 {
     internal static class Program
@@ -12,6 +14,9 @@ namespace KevinZonda.UoB.SshVPN
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new View.frmMain());
+            Socks2Http.Stop();
+            SshController.Stop();
+
         }
     }
 }

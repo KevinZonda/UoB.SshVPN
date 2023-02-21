@@ -7,16 +7,21 @@ namespace KevinZonda.UoB.SshVPN.View
         public frmMain()
         {
             InitializeComponent();
-            ViewController.MainView = this;
+            EventController.Self.OnSshExit += (x) =>
+            {
+                Colour(Color.Red);
+            };
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
+            Green();
             BaseController.StartLocally(txtUsername.Text, txtPassword.Text);
         }
 
         private void btnConnectGlobal_Click(object sender, EventArgs e)
         {
+            Green();
             BaseController.StartGlobally(txtUsername.Text, txtPassword.Text);
         }
 
@@ -24,5 +29,18 @@ namespace KevinZonda.UoB.SshVPN.View
         {
             BaseController.Stop();
         }
+
+        public void Colour(Color c)
+        {
+            this.Invoke(() =>
+            {
+                picLogo.BackColor = c;
+            });
+        }
+        public void Green()
+        {
+            Colour(Color.Green);
+        }
+
     }
 }
